@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Tut20.Models.Reading>
+@{
+    ViewData["Title"] = "Visiting";
+}
+<h2>Visiting</h2>
+
+<form id="period_sample" method="post">
+    Фон
+    <input type="text" name="sample" value="@ViewBag.Sample" title="Фильтр для фоновой группы" />
+    :
+    <input type="number" name="period" value="@ViewBag.Period" title="Число дней с момента открытия лекции" />
+    <input type="submit" value="Submit" class="btn-primary" />
+    <button type="button" data-toggle="collapse" data-target="#collapseExample"
+            aria-expanded="false" aria-controls="collapseExample">
+        H
+    </button>
+</form>
+
+<div>
+    Цели
+    <input type="text" id="rfilter" value="@ViewBag.Sample" />
+    <input type="text" id="gfilter" value="" />
+    <input type="text" id="bfilter" value="" />
+</div>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        Графики показывают количество уникальных посещений лекций, сделанных целевой группой в течение первых n дней с момента публикации лекции.
+        <br />Моментом публикации лекции считается время, когда лекцию впервые посетили из фоновой группы.
+        <br />
+    </div>
+</div>
+<div id="info" style="color: red">▪</div>
+
+<div id="info2" class="well well-sm"></div>
+
+<canvas width="500" height="300" id="canvas2"></canvas>
+
+
+
+@section scripts {
+    <script>
+         var data = @(new Microsoft.AspNetCore.Html.HtmlString(ViewBag.Data));
+    </script>
+    <script src="~/js/Series.js"></script>
+    <script src="~/js/stat_visiting.js"></script>
+}

@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Marks";
+}
+
+@*<table border="1px">
+        <tr><th>Преподаватель</th><th>Кол-во студентов</th><th>Среднее </th><th>Отклонение</th><th>Ассиметрия</th><th>Эксцесс</th></tr>
+        @foreach (var user in )
+        {
+            <tr>
+                <td>
+                    @user.Key
+                </td>
+
+                @foreach (var c in mark.Value)
+                {
+                    <td>@(Math.Round(c, 3, MidpointRounding.AwayFromZero))</td>
+                }
+
+            </tr>
+        }
+    </table>*@
+<hr />
+<div>
+    <input type="text" id="rfilter" value="" />
+
+    <form name="f1">
+        Param<br>
+              <select name="param" id="s1">
+                  <option value="KT1">KT1</option>
+                  <option value="KT2">KT2</option>
+                  <option value="Lab">Lab</option>
+                  <option value="Math">Math</option>
+                  <option value="ZNO">ZNO</option>
+              </select>
+        <input type="button" onclick="f()" value="ok">
+    </form>
+
+
+</div>
+<canvas width="750" height="300" id="canvas3"></canvas>
+<div>
+    <form asp-action="Data" method="post" enctype="multipart/form-data">
+        <label for="file">
+            Choose file to upload
+            <input type="file" id="file" name="file" style="display:inline" />
+        </label>
+        <input type="submit" value="New Data" />
+    </form>
+</div>
+
+@section scripts {
+    <script>
+        var dataAll = @(new Microsoft.AspNetCore.Html.HtmlString(ViewBag.Data));
+    </script>
+    <script src="~/js/Histogram.js"></script>
+    <script src="~/js/marks.js"></script>
+}
