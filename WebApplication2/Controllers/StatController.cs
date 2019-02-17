@@ -27,7 +27,7 @@ namespace WebApplication2.Controllers
 
         public IActionResult Solving(StatSolvingViewModel model)
         {
-            if (model.Hours == 0) model.Hours = 8760; // 365 days
+            if (model.Hours == 0) model.Hours = 8760; // 365 days(year)
             if (model.BackSample == null) model.BackSample = "^[1-9ab]";
             if (model.ForeSample == null) model.ForeSample = "^1";
 
